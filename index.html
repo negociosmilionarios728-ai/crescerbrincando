@@ -302,9 +302,10 @@
   @media (min-width:760px){ .authority{ flex-direction:row; align-items:center; gap:36px; } }
   .authority-avatar{
     flex:none; width:112px; height:112px; border-radius:50%;
-    background:var(--paper-deep); border:2px dashed var(--line);
-    display:flex; align-items:center; justify-content:center; color:var(--ink-faint);
+    background:var(--paper-deep); border:3px solid var(--paper-raised); box-shadow:var(--shadow-sm);
+    overflow:hidden;
   }
+  .authority-avatar svg{ display:block; width:100%; height:100%; }
   .authority-copy h2{ font-size:clamp(1.5rem, 1.3rem + 1vw, 2rem); margin-top:.35em; }
   .authority-copy p{ color:var(--ink-soft); margin-top:.9em; max-width:62ch; font-size:1.02rem; }
   .authority-copy .authority-role{ margin-top:.4em; font-size:.96rem; color:var(--coral-deep); }
@@ -505,8 +506,18 @@
     <div class="wrap">
       <div class="authority reveal">
         <div class="authority-avatar" aria-hidden="true">
-          <!-- TODO: substituir por foto real -->
-          <svg width="44" height="44" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M4 20c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <!-- Avatar ilustrado (não é foto real) — trocar pelo <img> de uma foto real quando houver -->
+          <svg viewBox="0 0 112 112" fill="none">
+            <circle cx="56" cy="56" r="56" fill="var(--paper-deep)"/>
+            <path d="M56 14c-19 0-32 15-32 34 0 7 1.5 13 4 18h5c-1.6-5-2.6-11-2.6-17 0-17 11-29 25.6-29s25.6 12 25.6 29c0 6-1 12-2.6 17h5c2.5-5 4-11 4-18 0-19-13-34-32-34z" fill="var(--plum)"/>
+            <circle cx="56" cy="60" r="23" fill="#F0C39C"/>
+            <circle cx="43" cy="66" r="4.2" fill="var(--coral)" opacity=".55"/>
+            <circle cx="69" cy="66" r="4.2" fill="var(--coral)" opacity=".55"/>
+            <circle cx="47" cy="58" r="2.6" fill="var(--ink)"/>
+            <circle cx="65" cy="58" r="2.6" fill="var(--ink)"/>
+            <path d="M47 68c3.5 3.4 14.5 3.4 18 0" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+            <path d="M14 112c0-19 18.8-31 42-31s42 12 42 31" fill="var(--amber)"/>
+          </svg>
         </div>
         <div class="authority-copy">
           <span class="eyebrow">Por trás de cada atividade</span>
