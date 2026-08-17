@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Crescer Brincando — Kits de Coordenação Motora para Imprimir</title>
-<meta name="description" content="Kits de atividades para imprimir e desenvolver a coordenação motora de crianças de 3 a 6 anos, longe da tela. Kit Inicial por R$9,90 e Kit Completo com 30 atividades por R$37." />
+<meta name="description" content="Kits de atividades para imprimir e desenvolver a coordenação motora de crianças de 3 a 6 anos, longe da tela. Kit Inicial por R$9,90 e Kit Completo com 30 atividades por R$47." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23FF6A52'/%3E%3C/svg%3E" />
 
 <!-- UTMify: captura de UTM's -->
@@ -219,6 +219,7 @@
   .faq-list .reveal-item:nth-child(3){ transition-delay:160ms; }
   .faq-list .reveal-item:nth-child(4){ transition-delay:240ms; }
   .faq-list .reveal-item:nth-child(5){ transition-delay:320ms; }
+  .faq-list .reveal-item:nth-child(6){ transition-delay:400ms; }
 
   /* ============================= Agitation ============================= */
   .agitation{ background:var(--paper-deep); }
@@ -268,7 +269,10 @@
   .price-badge{ align-self:flex-start; font-family:var(--font-display); font-weight:700; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; padding:.4em .9em; border-radius:999px; background:var(--paper-deep); color:var(--ink); }
   .price-card--featured .price-badge{ background:var(--amber); color:#3A2A05; }
   .price-title{ font-family:var(--font-display); font-weight:800; font-size:1.35rem; margin-top:18px; }
-  .price-value{ display:flex; align-items:baseline; gap:.25em; margin-top:14px; }
+  .price-anchor{ font-size:1rem; color:var(--ink-soft); margin-top:16px; }
+  .price-anchor s{ text-decoration-color:var(--coral-deep); text-decoration-thickness:2px; opacity:.8; }
+  .price-card--featured .price-anchor{ color:#C7C1E0; }
+  .price-value{ display:flex; align-items:baseline; gap:.25em; margin-top:6px; }
   .price-value .currency{ font-family:var(--font-display); font-weight:700; font-size:1.3rem; }
   .price-value .amount{ font-family:var(--font-display); font-weight:800; font-size:clamp(2.4rem,2rem + 1.4vw,3.3rem); line-height:1; }
   .price-note{ font-size:.92rem; color:var(--ink-soft); margin-top:4px; }
@@ -292,6 +296,25 @@
   .guarantee svg{ flex:none; }
   .guarantee p{ font-size:.98rem; color:var(--ink-soft); margin:0; }
   .guarantee strong{ color:var(--ink); }
+
+  /* ============================= Authority ============================= */
+  .authority{ display:flex; flex-direction:column; align-items:flex-start; gap:22px; text-align:left; }
+  @media (min-width:760px){ .authority{ flex-direction:row; align-items:center; gap:36px; } }
+  .authority-avatar{
+    flex:none; width:112px; height:112px; border-radius:50%;
+    background:var(--paper-deep); border:2px dashed var(--line);
+    display:flex; align-items:center; justify-content:center; color:var(--ink-faint);
+  }
+  .authority-copy h2{ font-size:clamp(1.5rem, 1.3rem + 1vw, 2rem); margin-top:.35em; }
+  .authority-copy p{ color:var(--ink-soft); margin-top:.7em; max-width:62ch; font-size:1.02rem; }
+
+  /* ============================= Testimonials ============================= */
+  .testimonials-grid{ display:grid; gap:20px; grid-template-columns:1fr; }
+  @media (min-width:760px){ .testimonials-grid{ grid-template-columns:repeat(3,1fr); } }
+  .testimonial-card{ background:var(--paper-raised); border:1px solid var(--line-soft); border-radius:var(--radius-sm); padding:24px 22px; box-shadow:var(--shadow-sm); }
+  .testimonial-avatar{ width:44px; height:44px; border-radius:50%; background:var(--paper-deep); border:2px dashed var(--line); margin-bottom:14px; }
+  .testimonial-quote{ font-size:.98rem; color:var(--ink); }
+  .testimonial-name{ margin-top:12px; font-family:var(--font-display); font-weight:700; font-size:.9rem; color:var(--ink-soft); }
 
   /* ============================= FAQ ============================= */
   .faq-list{ display:flex; flex-direction:column; gap:12px; max-width:760px; }
@@ -476,6 +499,23 @@
     </div>
   </section>
 
+  <!-- ============ AUTHORITY ============ -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="authority reveal">
+        <div class="authority-avatar" aria-hidden="true">
+          <!-- TODO: substituir por foto real -->
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M4 20c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <div class="authority-copy">
+          <span class="eyebrow">Por trás de cada atividade</span>
+          <h2>[Nome / "a equipe da Crescer Brincando"]</h2>
+          <p>[Inserir credencial real — formação, experiência como mãe/pai, ou apoio pedagógico]. Cada atividade do kit foi desenhada com um objetivo pedagógico específico — não é só entretenimento, é desenvolvimento motor de verdade, um traço de cada vez.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ BLOCKS SHELF ============ -->
   <section class="section">
     <div class="wrap">
@@ -530,7 +570,7 @@
               <div class="block-desc">Espelhando desenhos, mão a mão.</div>
             </div>
           </div>
-          <p class="blocks-total reveal"><strong><span class="count-num" data-count-to="30">0</span></strong> atividades prontas para imprimir, organizadas do mais simples ao mais desafiador.</p>
+          <p class="blocks-total reveal"><strong><span class="count-num" data-count-to="30">30</span></strong> atividades prontas para imprimir, organizadas do mais simples ao mais desafiador.</p>
         </div>
       </div>
     </div>
@@ -565,8 +605,9 @@
         <div class="price-card price-card--featured reveal-item">
           <span class="price-badge">Mais completo · +2 bônus</span>
           <div class="price-title">Kit Coordenação Motora — Completo</div>
-          <div class="price-value"><span class="currency">R$</span><span class="amount">37</span></div>
-          <p class="price-note">Pagamento único · acesso imediato</p>
+          <div class="price-anchor">De <s>R$67</s></div>
+          <div class="price-value"><span class="currency">R$</span><span class="amount">47</span></div>
+          <p class="price-note">R$47 hoje · pagamento único · acesso imediato</p>
           <ul class="price-list">
             <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--amber)"/><path d="M5 9.5l2.5 2.5L13 6" stroke="#251F38" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>30 atividades — os 7 blocos inteiros (A a G)</li>
             <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--amber)"/><path d="M5 9.5l2.5 2.5L13 6" stroke="#251F38" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Do traço simples à simetria, com dificuldade progressiva</li>
@@ -586,7 +627,7 @@
             </div>
           </div>
 
-          <a class="btn btn--coral" href="https://pay.cakto.com.br/383kigd_1022271" data-checkout="completo">Quero o kit completo por R$37</a>
+          <a class="btn btn--coral" href="https://pay.cakto.com.br/383kigd_1022271" data-checkout="completo">Quero o kit completo por R$47</a>
         </div>
       </div>
 
@@ -597,10 +638,43 @@
 
       <div class="guarantee reveal">
         <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="17" fill="var(--teal)"/><path d="M10 17.5l4.5 4.5L24 12" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <p><strong>7 dias de garantia</strong>, conforme o Código de Defesa do Consumidor — se não for para vocês, é só pedir o reembolso.</p>
+        <p><strong>7 dias de garantia.</strong> Se depois de imprimir e testar a primeira atividade você achar que não é bem o que esperava, é só mandar um e-mail em até 7 dias — devolvemos 100% do valor, sem perguntas.</p>
       </div>
     </div>
   </section>
+
+  <!-- ============ TESTIMONIALS (placeholder — não renderiza: mova o conteúdo pra fora do <template> e preencha com depoimentos reais antes de publicar) ============ -->
+  <template id="testimonials-placeholder">
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Prova social</span>
+        <h2>O que as famílias estão achando</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal-item">
+          <!-- TODO: substituir por depoimento real -->
+          <div class="testimonial-avatar" aria-hidden="true"></div>
+          <p class="testimonial-quote">"[depoimento real aqui]"</p>
+          <div class="testimonial-name">[Nome do responsável]</div>
+        </div>
+        <div class="testimonial-card reveal-item">
+          <!-- TODO: substituir por depoimento real -->
+          <div class="testimonial-avatar" aria-hidden="true"></div>
+          <p class="testimonial-quote">"[depoimento real aqui]"</p>
+          <div class="testimonial-name">[Nome do responsável]</div>
+        </div>
+        <div class="testimonial-card reveal-item">
+          <!-- TODO: substituir por depoimento real -->
+          <div class="testimonial-avatar" aria-hidden="true"></div>
+          <p class="testimonial-quote">"[depoimento real aqui]"</p>
+          <div class="testimonial-name">[Nome do responsável]</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </template>
+  <!-- ============ FIM TESTIMONIALS ============ -->
 
   <!-- ============ FAQ ============ -->
   <section class="section">
@@ -630,6 +704,10 @@
           <summary>Como recebo o material?<span class="plus">+</span></summary>
           <div class="faq-a">Assim que o pagamento é confirmado, você recebe o link para baixar o PDF — e já pode imprimir na hora.</div>
         </details>
+        <details class="faq-item reveal-item">
+          <summary>E se meu filho ainda não segura o lápis direito?<span class="plus">+</span></summary>
+          <div class="faq-a">Sem problema — o kit foi pensado para evoluir junto com a criança. As primeiras atividades do Bloco A não exigem nenhuma habilidade prévia, e a dificuldade aumenta de forma gradual conforme ele(a) ganha confiança.</div>
+        </details>
       </div>
     </div>
   </section>
@@ -643,7 +721,7 @@
       <p>Escolha o kit que faz sentido para vocês agora — dá pra evoluir do inicial pro completo quando quiser.</p>
       <div class="hero-cta-row">
         <a class="btn btn--ghost" href="https://pay.cakto.com.br/32a95mj_1022207" data-checkout="entrada">Kit Inicial · R$9,90</a>
-        <a class="btn btn--coral" href="https://pay.cakto.com.br/383kigd_1022271" data-checkout="completo">Kit Completo · R$37</a>
+        <a class="btn btn--coral" href="https://pay.cakto.com.br/383kigd_1022271" data-checkout="completo">Kit Completo · R$47</a>
       </div>
     </div>
   </section>
