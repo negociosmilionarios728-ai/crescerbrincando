@@ -313,10 +313,27 @@
   /* ============================= Testimonials ============================= */
   .testimonials-grid{ display:grid; gap:20px; grid-template-columns:1fr; }
   @media (min-width:760px){ .testimonials-grid{ grid-template-columns:repeat(3,1fr); } }
-  .testimonial-card{ background:var(--paper-raised); border:1px solid var(--line-soft); border-radius:var(--radius-sm); padding:24px 22px; box-shadow:var(--shadow-sm); }
-  .testimonial-avatar{ width:44px; height:44px; border-radius:50%; background:var(--paper-deep); border:2px dashed var(--line); margin-bottom:14px; }
-  .testimonial-quote{ font-size:.98rem; color:var(--ink); }
-  .testimonial-name{ margin-top:12px; font-family:var(--font-display); font-weight:700; font-size:.9rem; color:var(--ink-soft); }
+  .testimonial-card{
+    background:var(--paper-raised);
+    border:1px solid var(--line-soft);
+    border-radius:var(--radius-sm);
+    padding:16px;
+    box-shadow:var(--shadow-sm);
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .testimonial-shot{
+    width:100%;
+    aspect-ratio:9 / 14;
+    object-fit:cover;
+    object-position:top center;
+    border-radius:10px;
+    border:1px solid var(--line-soft);
+    background:var(--paper-deep);
+  }
+  .testimonial-quote{ font-size:.97rem; color:var(--ink); line-height:1.55; }
+  .testimonial-name{ font-family:var(--font-display); font-weight:700; font-size:.9rem; color:var(--ink-soft); }
 
   /* ============================= FAQ ============================= */
   .faq-list{ display:flex; flex-direction:column; gap:12px; max-width:760px; }
@@ -659,37 +676,33 @@
     </div>
   </section>
 
-  <!-- ============ TESTIMONIALS (placeholder — não renderiza: mova o conteúdo pra fora do <template> e preencha com depoimentos reais antes de publicar) ============ -->
-  <template id="testimonials-placeholder">
+  <!-- ============ TESTIMONIALS ============ -->
   <section class="section">
     <div class="wrap">
       <div class="section-head center reveal">
         <span class="eyebrow">Prova social</span>
-        <h2>O que as famílias estão achando</h2>
+        <h2>Famílias que já trocaram alguns minutos de tela por brincadeira</h2>
+        <p>Depoimentos reais recebidos no WhatsApp depois das primeiras atividades impressas.</p>
       </div>
       <div class="testimonials-grid">
         <div class="testimonial-card reveal-item">
-          <!-- TODO: substituir por depoimento real -->
-          <div class="testimonial-avatar" aria-hidden="true"></div>
-          <p class="testimonial-quote">"[depoimento real aqui]"</p>
-          <div class="testimonial-name">[Nome do responsável]</div>
+          <img class="testimonial-shot" src="assets/depoimentos/claudia.png" alt="Conversa no WhatsApp com depoimento da Claudia" loading="lazy">
+          <p class="testimonial-quote">"Meu filho amou as atividades! Hoje ele ficou quase uma hora fazendo e nem pediu o celular. Ele ficou todo orgulhoso quando terminou uma sozinho."</p>
+          <div class="testimonial-name">Claudia</div>
         </div>
         <div class="testimonial-card reveal-item">
-          <!-- TODO: substituir por depoimento real -->
-          <div class="testimonial-avatar" aria-hidden="true"></div>
-          <p class="testimonial-quote">"[depoimento real aqui]"</p>
-          <div class="testimonial-name">[Nome do responsável]</div>
+          <img class="testimonial-shot" src="assets/depoimentos/leticia.png" alt="Conversa no WhatsApp com depoimento da Leticia" loading="lazy">
+          <p class="testimonial-quote">"Já imprimi algumas atividades e estou adorando, minha filha fica super concentrada fazendo. Ela pediu para imprimir mais."</p>
+          <div class="testimonial-name">Leticia</div>
         </div>
         <div class="testimonial-card reveal-item">
-          <!-- TODO: substituir por depoimento real -->
-          <div class="testimonial-avatar" aria-hidden="true"></div>
-          <p class="testimonial-quote">"[depoimento real aqui]"</p>
-          <div class="testimonial-name">[Nome do responsável]</div>
+          <img class="testimonial-shot" src="assets/depoimentos/paulo.png" alt="Conversa no WhatsApp com depoimento do Paulo" loading="lazy">
+          <p class="testimonial-quote">"Deu super certo aqui em casa. Eu estava procurando alguma coisa para minha filha fazer sem precisar ficar no tablet. Imprimi, coloquei os lápis na mesa e ela já começou."</p>
+          <div class="testimonial-name">Paulo</div>
         </div>
       </div>
     </div>
   </section>
-  </template>
   <!-- ============ FIM TESTIMONIALS ============ -->
 
   <!-- ============ FAQ ============ -->
