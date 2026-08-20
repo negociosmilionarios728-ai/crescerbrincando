@@ -938,19 +938,32 @@
     });
   }
 
-  /* ---- Upsell popup: intercept "Kit Inicial" clicks, offer Kit Completo por R$29,90 ---- */
+  /* ---- Upsell popup: intercept "Kit Inicial" clicks, offer Kit Completo por R$29,90 ----
+     Delegated on document (capture phase) on purpose: the UTMify tracking script clones/
+     replaces these <a> tags after load to inject UTM params, which silently orphans any
+     listener attached directly to the original node (clicks then skip the popup and go
+     straight to checkout). Delegation re-resolves the target at click time, so it survives
+     that replacement no matter when it happens. */
   var upsellOverlay = document.getElementById('upsellOverlay');
   var upsellContinue = document.getElementById('upsellContinue');
   if (upsellOverlay && upsellContinue) {
-    document.querySelectorAll('a[data-checkout="entrada"]').forEach(function(triggerLink){
-      if (triggerLink.id === 'upsellContinue') return;
-      triggerLink.addEventListener('click', function(e){
+    document.addEventListener('click', function(e){
+      var entradaLink = e.target.closest('a[data-checkout="entrada"]');
+      if (entradaLink && entradaLink.id !== 'upsellContinue') {
         e.preventDefault();
-        upsellContinue.href = triggerLink.href;
+        e.stopImmediatePropagation();
+        upsellContinue.href = entradaLink.href;
         upsellOverlay.classList.add('is-open');
         document.body.style.overflow = 'hidden';
-      });
-    });
+        return;
+      }
+      var modalLink = e.target.closest('.upsell-actions a');
+      if (modalLink) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        window.location.href = modalLink.href;
+      }
+    }, true);
     /* Popup stays open until the visitor picks an option — no close/backdrop-dismiss by design. */
   }
 </script>
