@@ -396,6 +396,40 @@
     .agitation-card:hover, .agitation-card:nth-child(even):hover, .method-card:hover, .block-card:hover, .price-card:hover{ transform:none; }
     .hero-art .page{ transition:none; }
   }
+
+  /* ============================= Upsell popup ============================= */
+  .upsell-overlay{
+    position:fixed; inset:0; z-index:200;
+    background:rgba(37,31,56,.72); backdrop-filter:blur(3px);
+    display:none; align-items:center; justify-content:center; padding:20px;
+  }
+  .upsell-overlay.is-open{ display:flex; }
+  .upsell-modal{
+    position:relative; width:100%; max-width:460px;
+    background:var(--ink); color:var(--paper-raised); border-radius:var(--radius-lg);
+    padding:clamp(26px,4vw,38px); box-shadow:var(--shadow-lg);
+    opacity:0; transform:translateY(18px) scale(.97);
+    animation:upsellIn .38s cubic-bezier(.16,.84,.44,1) forwards;
+  }
+  @keyframes upsellIn{ to{ opacity:1; transform:none; } }
+  .upsell-modal .price-badge{ background:var(--amber); color:#3A2A05; }
+  .upsell-modal h3{ font-family:var(--font-display); font-weight:800; font-size:clamp(1.35rem,1.15rem + 1vw,1.7rem); margin-top:16px; line-height:1.15; color:var(--paper-raised); }
+  .upsell-modal .upsell-price-row{ display:flex; align-items:baseline; gap:.5em; margin-top:16px; }
+  .upsell-modal .upsell-was{ font-size:1.05rem; color:#9B93BE; text-decoration:line-through; }
+  .upsell-modal .upsell-now{ font-family:var(--font-display); font-weight:800; font-size:2.1rem; color:var(--amber); }
+  .upsell-modal p.upsell-copy{ color:#D7D2ED; margin-top:14px; font-size:.98rem; line-height:1.55; }
+  .upsell-modal ul{ margin-top:16px; display:flex; flex-direction:column; gap:8px; }
+  .upsell-modal ul li{ display:flex; align-items:flex-start; gap:9px; font-size:.93rem; color:#EDEAF9; }
+  .upsell-modal ul svg{ flex:none; margin-top:2px; }
+  .upsell-actions{ margin-top:26px; display:flex; flex-direction:column; gap:10px; }
+  .upsell-actions .btn{ width:100%; }
+  .upsell-secondary{
+    display:inline-flex; align-items:center; justify-content:center;
+    font-family:var(--font-body); font-weight:700; font-size:.88rem;
+    color:#B7AFDA; background:transparent; border:none; text-decoration:underline;
+    padding:.5em; cursor:pointer;
+  }
+  .upsell-secondary:hover{ color:var(--paper-raised); }
 </style>
 </head>
 <body>
@@ -767,6 +801,29 @@
   </div>
 </footer>
 
+<!-- ============ UPSELL POPUP (Kit Inicial → oferta do Completo por R$29,90) ============ -->
+<div class="upsell-overlay" id="upsellOverlay">
+  <div class="upsell-modal" role="dialog" aria-modal="true" aria-labelledby="upsellTitle">
+    <span class="price-badge">Oferta única · só agora</span>
+    <h3 id="upsellTitle">Espera! Leve o Kit Completo por R$29,90</h3>
+    <div class="upsell-price-row">
+      <span class="upsell-was">De R$47</span>
+      <span class="upsell-now">R$29,90</span>
+    </div>
+    <p class="upsell-copy">Antes de seguir com o Kit Inicial, essa é sua chance de levar tudo de uma vez — por um valor bem mais próximo do inicial. Essa oferta não aparece de novo depois que você sair desta página.</p>
+    <ul>
+      <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--amber)"/><path d="M5 9.5l2.5 2.5L13 6" stroke="#3A2A05" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>30 atividades — os 7 blocos inteiros (A a G)</li>
+      <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--amber)"/><path d="M5 9.5l2.5 2.5L13 6" stroke="#3A2A05" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Bônus: Certificado de Conclusão</li>
+      <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--amber)"/><path d="M5 9.5l2.5 2.5L13 6" stroke="#3A2A05" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Bônus: Mini Kit de Inglês — Primeiras Palavras</li>
+      <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--amber)"/><path d="M5 9.5l2.5 2.5L13 6" stroke="#3A2A05" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Acesso imediato, em PDF</li>
+    </ul>
+    <div class="upsell-actions">
+      <a class="btn btn--coral" href="https://pay.cakto.com.br/xdg95qy_1053698" data-checkout="upsell">Quero o Kit Completo por R$29,90</a>
+      <a class="upsell-secondary" id="upsellContinue" href="https://pay.cakto.com.br/32a95mj_1022207" data-checkout="entrada">Não, prefiro continuar só com o Kit Inicial · R$9,90</a>
+    </div>
+  </div>
+</div>
+
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -879,6 +936,22 @@
       });
       card.addEventListener('mouseleave', function(){ card.style.transform = ''; });
     });
+  }
+
+  /* ---- Upsell popup: intercept "Kit Inicial" clicks, offer Kit Completo por R$29,90 ---- */
+  var upsellOverlay = document.getElementById('upsellOverlay');
+  var upsellContinue = document.getElementById('upsellContinue');
+  if (upsellOverlay && upsellContinue) {
+    document.querySelectorAll('a[data-checkout="entrada"]').forEach(function(triggerLink){
+      if (triggerLink.id === 'upsellContinue') return;
+      triggerLink.addEventListener('click', function(e){
+        e.preventDefault();
+        upsellContinue.href = triggerLink.href;
+        upsellOverlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    /* Popup stays open until the visitor picks an option — no close/backdrop-dismiss by design. */
   }
 </script>
 
