@@ -186,6 +186,14 @@
   .section-head.center{ margin-inline:auto; text-align:center; }
   .section-head.center p{ margin-inline:auto; }
 
+  /* ============================= VSL player ============================= */
+  .vsl-player{
+    max-width:380px; margin-inline:auto; aspect-ratio:9/16;
+    border-radius:var(--radius-lg); overflow:hidden;
+    box-shadow:var(--shadow-lg); background:var(--ink);
+  }
+  .vsl-video{ width:100%; height:100%; display:block; object-fit:cover; }
+
   .reveal, .reveal-item{
     opacity:0; transform:translateY(24px);
     transition:opacity .65s cubic-bezier(.16,.84,.44,1), transform .65s cubic-bezier(.16,.84,.44,1);
@@ -485,6 +493,21 @@
             </svg>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VSL ============ -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Antes de continuar</span>
+        <h2>Veja como funciona em menos de 1 minuto</h2>
+      </div>
+      <div class="vsl-player reveal">
+        <video class="vsl-video" poster="criativos/vsl-poster.jpg" controls preload="none" playsinline>
+          <source src="criativos/vsl.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
   </section>
