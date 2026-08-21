@@ -7,11 +7,24 @@
 <meta name="description" content="Kits de atividades para imprimir e desenvolver a coordenação motora de crianças de 3 a 6 anos, longe da tela. Kit Inicial por R$9,90 e Kit Completo com 30 atividades por R$47." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23FF6A52'/%3E%3C/svg%3E" />
 
-<!-- UTMify: captura de UTM's -->
+<!-- Meta Pixel Code (nativo — não depende do UTMify pra disparar eventos) -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1302868399568523');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code -->
+
+<!-- UTMify: captura de UTM's (sem os data-utmify-prevent-* — eles atrapalhavam a atribuição do InitiateCheckout) -->
 <script
   src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-  data-utmify-prevent-xcod-sck
-  data-utmify-prevent-subids
   async
   defer
 ></script>
@@ -984,11 +997,27 @@
       if (modalLink) {
         e.preventDefault();
         e.stopImmediatePropagation();
+        if (typeof fbq === 'function') { fbq('track', 'InitiateCheckout'); }
         window.location.href = modalLink.href;
       }
     }, true);
     /* Popup stays open until the visitor picks an option — no close/backdrop-dismiss by design. */
   }
+
+  /* ---- InitiateCheckout: dispara no clique real de ir pro checkout (Kit Completo) ----
+     Mesmo padrão de delegação em capture, pelo mesmo motivo do popup acima — o UTMify
+     substitui esses <a> depois do load, então um listener preso ao nó original não dispara.
+     Os cliques em "Kit Inicial" NÃO disparam aqui: eles só abrem o popup (tratado acima);
+     o IC desse fluxo é disparado quando a pessoa realmente escolhe uma opção no popup. */
+  document.addEventListener('click', function(e){
+    var completoLink = e.target.closest('a[data-checkout="completo"]');
+    if (completoLink) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      if (typeof fbq === 'function') { fbq('track', 'InitiateCheckout'); }
+      window.location.href = completoLink.href;
+    }
+  }, true);
 </script>
 
 </body>
