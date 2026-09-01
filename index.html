@@ -993,31 +993,17 @@ fbq('track', 'PageView');
         document.body.style.overflow = 'hidden';
         return;
       }
-      var modalLink = e.target.closest('.upsell-actions a');
-      if (modalLink) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        if (typeof fbq === 'function') { fbq('track', 'InitiateCheckout'); }
-        window.location.href = modalLink.href;
-      }
+      /* Os 2 botões do popup (upsell R$29,90 e "continuar" R$9,90) e o botão direto do Kit
+         Completo NÃO são interceptados aqui de propósito: o pixel.js da UTMify já anexa seu
+         próprio listener de clique nesses mesmos links (ela reconhece "pay.cakto.com.br" como
+         link de checkout), e ele mesmo cuida do tracking (pro dashboard da UTMify e, dentro
+         disso, reenvia um InitiateCheckout enriquecido pro Meta) e da navegação. Chamar
+         preventDefault/stopImmediatePropagation aqui cancelava esse listener da UTMify antes
+         dele rodar (ela roda depois, mais perto do elemento, na mesma fase de captura) — por
+         isso os ICs não apareciam no painel da UTMify, mesmo com o Meta Pixel nativo ok. */
     }, true);
     /* Popup stays open until the visitor picks an option — no close/backdrop-dismiss by design. */
   }
-
-  /* ---- InitiateCheckout: dispara no clique real de ir pro checkout (Kit Completo) ----
-     Mesmo padrão de delegação em capture, pelo mesmo motivo do popup acima — o UTMify
-     substitui esses <a> depois do load, então um listener preso ao nó original não dispara.
-     Os cliques em "Kit Inicial" NÃO disparam aqui: eles só abrem o popup (tratado acima);
-     o IC desse fluxo é disparado quando a pessoa realmente escolhe uma opção no popup. */
-  document.addEventListener('click', function(e){
-    var completoLink = e.target.closest('a[data-checkout="completo"]');
-    if (completoLink) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      if (typeof fbq === 'function') { fbq('track', 'InitiateCheckout'); }
-      window.location.href = completoLink.href;
-    }
-  }, true);
 </script>
 
 </body>
